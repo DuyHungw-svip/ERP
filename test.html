@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EnterpriseFlow - Kiểm soát toàn diện</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#8e3c00",
+                    "outline-variant": "#c3c6d7",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#131b2e",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface-container-highest": "#dae2fd",
+                    "on-secondary-container": "#fffbff",
+                    "surface": "#faf8ff",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#b54e00",
+                    "surface-dim": "#d2d9f4",
+                    "inverse-surface": "#283044",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "on-tertiary-fixed": "#341100",
+                    "on-surface-variant": "#434655",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#8a4cfc",
+                    "on-secondary-fixed": "#25005a",
+                    "surface-container-high": "#e2e7ff",
+                    "surface-variant": "#dae2fd",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "primary-fixed": "#dbe1ff",
+                    "secondary-fixed": "#eaddff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#737686",
+                    "on-background": "#131b2e",
+                    "tertiary-fixed": "#ffdbca",
+                    "surface-bright": "#faf8ff",
+                    "secondary": "#712ae2",
+                    "on-primary-container": "#eeefff",
+                    "background": "#faf8ff",
+                    "surface-container": "#eaedff",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#2563eb",
+                    "inverse-primary": "#b4c5ff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f3ff",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#00174b",
+                    "on-primary": "#ffffff",
+                    "primary": "#004ac6",
+                    "on-tertiary-container": "#ffece5",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "surface-tint": "#0053db"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Hanken Grotesk"],
+                    "display-lg": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .scroll-visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        .hero-bg-img {
+            transition: transform 0.3s ease-out;
+            will-change: transform;
+        }
+        #heroSection {
+            background: #000;
+        }
+        .hero-bg {
+            background: transparent;
+        }
+        .hero-bg-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: transparent;
+            backface-visibility: hidden;
+            will-change: opacity, transform;
+            transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
+        }
+        .hero-bg-layer.a7 {
+            z-index: 1;
+            opacity: 1;
+        }
+        .hero-bg-layer.a8 {
+            z-index: 2;
+            opacity: 0;
+        }
+        .hero-bg-layer.a6 {
+            z-index: 3;
+            opacity: 0;
+        }
+        .opacity-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .opacity-control-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+        }
+        .opacity-control-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .opacity-control-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+        #opacityRange {
+            width: 100%;
+            max-width: 22rem;
+            accent-color: #2563eb;
+        }
+        .dropdown-menu {
+            display: none;
+            position: fixed;
+            background: white;
+            border-radius: 12px;
+            shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            min-width: 1000px;
+            padding: 24px;
+            margin-top: 8px;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            left: 50%;
+            transform: translateX(-50%);
+            top: 70px;
+        }
+        .dropdown-menu.active {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+        .dropdown-column h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ff6b6b;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .dropdown-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dropdown-column li {
+            margin-bottom: 8px;
+        }
+        .dropdown-column a {
+            color: #434655;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+        .dropdown-column a:hover {
+            color: #004ac6;
+            font-weight: 500;
+        }
+        .dropdown-trigger {
+            position: relative;
+            cursor: pointer;
+        }
+        .dropdown-trigger::after {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            margin-left: 6px;
+            transform: rotate(-45deg);
+            transition: transform 0.3s;
+        }
+        .dropdown-trigger.active::after {
+            transform: rotate(135deg);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<header class="docked full-width top-0 z-50 bg-transparent absolute w-full">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-white">EnterpriseFlow</div>
+<nav class="hidden md:flex items-center gap-8 relative">
+<a class="text-white font-bold border-b-2 border-white pb-1 font-label-md text-label-md" href="#">Trang chủ</a>
+
+<div class="dropdown-trigger text-white hover:text-white/80 transition-colors font-label-md text-label-md" id="app-dropdown-btn">
+    Ứng dụng
+</div>
+<div class="dropdown-menu" id="app-dropdown">
+    <div class="dropdown-column">
+        <h3>Tài Chính</h3>
+        <ul>
+            <li><a href="#">Kế toán</a></li>
+            <li><a href="#">Hóa đơn</a></li>
+            <li><a href="#">Chi phí</a></li>
+            <li><a href="#">Bảng tính (BI)</a></li>
+            <li><a href="#">Tài liệu</a></li>
+            <li><a href="#">Ký tên</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Bán Hàng</h3>
+        <ul>
+            <li><a href="#">CRM</a></li>
+            <li><a href="#">Bán hàng</a></li>
+            <li><a href="#">POS Cửa hàng</a></li>
+            <li><a href="#">POS Nhà hàng</a></li>
+            <li><a href="#">Đăng ký</a></li>
+            <li><a href="#">Cho thuê</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Trang Web</h3>
+        <ul>
+            <li><a href="#">Trình tạo trang web</a></li>
+            <li><a href="#">Thương mại điện tử</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Diễn đàn</a></li>
+            <li><a href="#">Trò chuyện trực tiếp</a></li>
+            <li><a href="#">Học trực tuyến</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Chuỗi Cung Ứng</h3>
+        <ul>
+            <li><a href="#">Tồn kho</a></li>
+            <li><a href="#">Sản xuất</a></li>
+            <li><a href="#">PLM</a></li>
+            <li><a href="#">Mua hàng</a></li>
+            <li><a href="#">Bảo đảm</a></li>
+            <li><a href="#">Chất lượng</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Nhân Sự</h3>
+        <ul>
+            <li><a href="#">Nhân viên</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+            <li><a href="#">Ngày nghỉ</a></li>
+            <li><a href="#">Đánh giá</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Đội xe</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Marketing</h3>
+        <ul>
+            <li><a href="#">Marketing trên MXH</a></li>
+            <li><a href="#">Marketing qua email</a></li>
+            <li><a href="#">Marketing qua SMS</a></li>
+            <li><a href="#">Sự kiện</a></li>
+            <li><a href="#">Tự động hóa Marketing</a></li>
+            <li><a href="#">Khảo sát</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Dịch Vụ</h3>
+        <ul>
+            <li><a href="#">Dự án</a></li>
+            <li><a href="#">Bảng chấm công</a></li>
+            <li><a href="#">Dịch vụ hiến trưởng</a></li>
+            <li><a href="#">Hỗ trợ</a></li>
+            <li><a href="#">Kế hoạch</a></li>
+            <li><a href="#">Lịch hẹn</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Nâng Suất</h3>
+        <ul>
+            <li><a href="#">Thảo luận</a></li>
+            <li><a href="#">Trí tuệ nhân tạo (AI)</a></li>
+            <li><a href="#">IoT</a></li>
+            <li><a href="#">VoIP</a></li>
+            <li><a href="#">Kiến thức</a></li>
+            <li><a href="#">WhatsApp</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="dropdown-trigger text-white hover:text-white/80 transition-colors font-label-md text-label-md" id="industry-dropdown-btn">
+    Ngành
+</div>
+<div class="dropdown-menu" id="industry-dropdown">
+    <div class="dropdown-column">
+        <h3>Bán Lẻ</h3>
+        <ul>
+            <li><a href="#">Nhà sách</a></li>
+            <li><a href="#">Cửa hàng quần áo</a></li>
+            <li><a href="#">Cửa hàng nội thất</a></li>
+            <li><a href="#">Cửa hàng tạp hóa</a></li>
+            <li><a href="#">Cửa hàng đồ kim khí</a></li>
+            <li><a href="#">Cửa hàng đồ chơi</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Ẩm Thực & Dịch Vụ Lưu Trữ</h3>
+        <ul>
+            <li><a href="#">Bar và quản rượu</a></li>
+            <li><a href="#">Nhà hàng</a></li>
+            <li><a href="#">Đồ ăn nhanh</a></li>
+            <li><a href="#">Guest house</a></li>
+            <li><a href="#">Nhà phép phòng</a></li>
+            <li><a href="#">Khách sạn</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Bất Động Sản</h3>
+        <ul>
+            <li><a href="#">Công ty môi giới bất động sản</a></li>
+            <li><a href="#">Công ty kiến trúc</a></li>
+            <li><a href="#">Xây dựng</a></li>
+            <li><a href="#">Quản lý bất động sản</a></li>
+            <li><a href="#">Làm vườn</a></li>
+            <li><a href="#">Hiệp hội chủ sở hữu</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Tư Vấn</h3>
+        <ul>
+            <li><a href="#">Công ty kế toán</a></li>
+            <li><a href="#">Bộ tài chính Odoo</a></li>
+            <li><a href="#">Công ty marketing</a></li>
+            <li><a href="#">Công ty luật</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+            <li><a href="#">Thành tra & chứng nhận</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Sản Xuất</h3>
+        <ul>
+            <li><a href="#">Dệt may</a></li>
+            <li><a href="#">Kim loại</a></li>
+            <li><a href="#">Nội thất</a></li>
+            <li><a href="#">Ẩm thực</a></li>
+            <li><a href="#">Nhà máy bia</a></li>
+            <li><a href="#">Quà tặng doanh nghiệp</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Sức Khỏe & Fitness</h3>
+        <ul>
+            <li><a href="#">CLB thể thao</a></li>
+            <li><a href="#">Cửa hàng kinh mắt</a></li>
+            <li><a href="#">Trung tâm fitness</a></li>
+            <li><a href="#">Chuyên gia chăm sóc sức khỏe</a></li>
+            <li><a href="#">Tiệm làm tóc</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Thương Mại</h3>
+        <ul>
+            <li><a href="#">Dịch vụ sửa chữa</a></li>
+            <li><a href="#">Phân cảnh CNTT & Hỗ trợ</a></li>
+            <li><a href="#">Hệ thống năng lượng mặt trời</a></li>
+            <li><a href="#">Công ty sản xuất giấy</a></li>
+            <li><a href="#">Dịch vụ vệ sinh</a></li>
+        </ul>
+    </div>
+    <div class="dropdown-column">
+        <h3>Khác</h3>
+        <ul>
+            <li><a href="#">Tổ chức phi lợi nhuận</a></li>
+            <li><a href="#">Cơ quan môi trường</a></li>
+            <li><a href="#">Cho thuê biển quảng cáo</a></li>
+            <li><a href="#">Nhiếp ảnh</a></li>
+            <li><a href="#">Đại lý phần mềm</a></li>
+        </ul>
+    </div>
+</div>
+
+<a class="text-white hover:text-white/80 transition-colors font-label-md text-label-md" href="#">Giá cả</a>
+<a class="text-white hover:text-white/80 transition-colors font-label-md text-label-md" href="#">Hướng dẫn</a>
+<a class="text-white hover:text-white/80 transition-colors font-label-md text-label-md" href="#">Hỗ trợ</a>
+</nav>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-lg font-label-md text-label-md font-bold active:scale-95 transition-transform">
+                Dùng thử miễn phí
+            </button>
+</div>
+</header>
+<main>
+<!-- 1. Hero Section -->
+<section class="relative h-screen min-h-screen flex items-center justify-center overflow-hidden">
+<div class="hero-bg absolute inset-0 z-0 overflow-hidden">
+<img alt="Hero background A7 - Day" class="hero-bg-layer a7" src="./A1.png" />
+<img alt="Hero background A8 - Dusk" class="hero-bg-layer a8" src="./A2.png" />
+<img alt="Hero background A6 - Night" class="hero-bg-layer a6" src="./A3.png" />
+</div>
+<div class="relative z-10 text-center px-4 w-full">
+<h1 class="scroll-reveal text-white font-display-lg text-display-lg mb-6">
+                    Kiểm soát toàn diện – Dẫn đầu thị trường
+                </h1>
+<p class="scroll-reveal text-white/90 font-body-lg text-body-lg mb-10 max-w-2xl mx-auto">
+                    Giải pháp quản trị doanh nghiệp hợp nhất, giúp bạn tối ưu quy trình và đột phá doanh thu với sức mạnh của công nghệ số.
+                </p>
+<div class="scroll-reveal flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-primary-container text-on-primary-container px-10 py-4 rounded-xl font-headline-md text-headline-md font-bold hover:shadow-lg transition-all active:scale-95">
+                        Bắt đầu ngay
+                    </button>
+<button class="border-2 border-white text-white px-10 py-4 rounded-xl font-headline-md text-headline-md font-bold hover:bg-white/10 transition-all">
+                        Xem demo
+                    </button>
+</div>
+<div class="scroll-reveal opacity-control">
+    <div class="opacity-control-row">
+        <span>Điều chỉnh từ ngày → hoàng hôn → đêm</span>
+        <button id="opacityDown" class="opacity-control-btn">-</button>
+        <span id="opacityValue">0.00</span>
+        <button id="opacityUp" class="opacity-control-btn">+</button>
+    </div>
+    <input id="opacityRange" type="range" min="0" max="1" step="0.01" value="0" />
+</div>
+</div>
+</section>
+<!-- 2. Features Section (Grid of Icons) -->
+<section class="py-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Hệ sinh thái quản trị 360°</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Mọi công cụ bạn cần để vận hành doanh nghiệp đều có mặt tại đây, tích hợp hoàn hảo trong một nền tảng duy nhất.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+<!-- Feature Items -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary text-4xl">account_balance</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Kế toán</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-secondary text-4xl">draw</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Ký tên</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-tertiary text-4xl">hub</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">CRM</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary text-4xl">point_of_sale</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">POS</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-secondary text-4xl">badge</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Nhân sự</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-tertiary text-4xl">inventory_2</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Tồn kho</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary text-4xl">precision_manufacturing</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Sản xuất</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-secondary text-4xl">shopping_cart</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Bán hàng</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-tertiary text-4xl">psychology</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">AI trợ lý</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary text-4xl">description</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Tài liệu</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-secondary text-4xl">assignment</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Dự án</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-tertiary text-4xl">language</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Trang web</span>
+</div>
+</div>
+</section>
+<!-- NEW SECTION: Quản lý vận hành cửa hàng toàn diện -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative order-2 lg:order-1">
+<div class="bg-primary/5 rounded-3xl p-4 aspect-square overflow-hidden border border-outline-variant/30 relative">
+<img alt="Operation Management" class="w-full h-full object-cover rounded-2xl shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAfnoE2yq1YvEEvs-h6wpaidlgWiPRXqDaRZY5-d7U8dfij9fPsRl-VEGKTTjRr496yDCy4dqURdYpBV6wrckWK_B-kSSUF7dM-9fZzPt4KuvivflDshmrwep0bedPO72u2pM5yAxYjlJ689rPmcsIdqkksyBBnB4QoGd5p25m_pnynEOnDjZXwiuxqxvakBMV4zLXcsId3oYRrNZveCH6fonp4FqtgIeYEkZyL9_sOESyl6OxXjEymImB6yLyk7Gwm8gl-hdE5z4c"/>
+<div class="absolute -bottom-4 -right-4 bg-white p-6 rounded-2xl shadow-2xl border border-outline-variant/20 hidden md:block">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+<span class="font-label-md text-label-md text-on-surface">Hệ thống đang hoạt động</span>
+</div>
+<div class="text-2xl font-bold text-primary">100% Real-time</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight">Quản lý vận hành cửa hàng toàn diện</h2>
+<p class="text-on-surface-variant font-body-lg">Đồng bộ hóa mọi khía cạnh của điểm bán lẻ và dịch vụ, từ khâu đón tiếp khách hàng đến quản trị kho bãi chuyên sâu.</p>
+<ul class="space-y-4">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-full">check_circle</span>
+<span class="font-body-md text-on-surface">Hỗ trợ thu ngân bán hàng, thanh toán tại cửa hàng nhanh chóng</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-full">check_circle</span>
+<span class="font-body-md text-on-surface">Đa dạng phương thức thanh toán (Tiền mặt, Thẻ, Ví điện tử, Chuyển khoản)</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-full">check_circle</span>
+<span class="font-body-md text-on-surface">Quản lý đơn hàng online &amp; kết nối đơn vị vận chuyển</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-full">check_circle</span>
+<span class="font-body-md text-on-surface">Quản lý nhân sự: Ca làm việc, doanh số, phân quyền chuyên sâu</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-full">check_circle</span>
+<span class="font-body-md text-on-surface">Quản lý khách hàng (CRM) &amp; Chương trình khuyến mãi linh hoạt</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-full">check_circle</span>
+<span class="font-body-md text-on-surface">Quản lý nguyên vật liệu chế biến &amp; Tồn kho thông minh</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-full">check_circle</span>
+<span class="font-body-md text-on-surface">Quản lý sản phẩm bằng mã vạch &amp; Danh mục đa dạng</span>
+</li>
+</ul>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md font-bold hover:shadow-xl transition-all">Nhận tư vấn ngay!</button>
+</div>
+</div>
+</section>
+<!-- NEW SECTION: Tính năng tại cửa hàng tùy chỉnh cho nhiều mô hình kinh doanh -->
+<section class="py-24 bg-surface">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Tính năng tùy chỉnh cho nhiều mô hình</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto font-body-lg">Giải pháp chuyên biệt hóa theo đặc thù từng ngành hàng, đảm bảo sự phù hợp tuyệt đối với quy trình vận hành của bạn.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-white p-8 rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-colors group">
+<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-4">Ngành bán lẻ</h3>
+<p class="text-on-surface-variant font-body-md">Hỗ trợ thu ngân tính tiền mã vạch, quản lý tồn kho đa kênh và kết nối vận chuyển tự động.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl border border-outline-variant/30 hover:border-secondary/50 transition-colors group">
+<div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">restaurant</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-4">Nhà hàng ăn uống</h3>
+<p class="text-on-surface-variant font-body-md">Đồng bộ đơn hàng Bếp/Pha chế, quản lý định mức nguyên liệu và tích hợp app giao hàng.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl border border-outline-variant/30 hover:border-tertiary/50 transition-colors group">
+<div class="w-14 h-14 bg-tertiary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-tertiary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">schedule</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-4">Dịch vụ theo giờ</h3>
+<p class="text-on-surface-variant font-body-md">Phù hợp Karaoke, Bida, Sân thể thao với tính năng tính tiền tự động theo block giờ linh hoạt.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-colors group">
+<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">content_cut</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-4">Dịch vụ làm đẹp</h3>
+<p class="text-on-surface-variant font-body-md">Quản lý liệu trình, đặt lịch hẹn khách hàng và nhắc lịch tự động qua tin nhắn.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- NEW SECTION: Comparison Problem vs Solution -->
+<section class="py-24 px-margin-desktop bg-surface-container-low overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Problem -->
+<div class="flex-1 space-y-8 p-10 bg-white rounded-3xl border border-error/20 relative">
+<div class="absolute -top-4 left-10 bg-error text-white px-4 py-1 rounded-full font-label-sm text-sm uppercase tracking-wider">Hạn chế hiện tại</div>
+<h3 class="font-headline-lg text-2xl text-on-surface">Thiếu các tính năng chuyên sâu cho cửa hàng bán lẻ hoặc F&amp;B</h3>
+<p class="text-on-surface-variant">Hệ thống POS tích hợp sẵn trong ERP thường được thiết kế cứng nhắc và yêu cầu cấu hình phức tạp, chưa đảm bảo đáp ứng đầy đủ các nhu cầu chuyên biệt:</p>
+<ul class="space-y-4">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-error mt-1">cancel</span>
+<p class="text-on-surface-variant font-body-md">Chưa tối ưu quy trình quản lý bán hàng và kiểm kê kho bằng mã vạch.</p>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-error mt-1">cancel</span>
+<p class="text-on-surface-variant font-body-md">Thiếu khả năng quản lý chi tiết nguyên liệu đầu vào/đầu ra theo công thức phức tạp.</p>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-error mt-1">cancel</span>
+<p class="text-on-surface-variant font-body-md">Hạn chế trong việc kết nối với các thiết bị ngoại vi chuyên dụng (máy in tem, cân điện tử...).</p>
+</li>
+</ul>
+</div>
+<!-- VS Divider -->
+<div class="hidden lg:flex flex-col items-center justify-center">
+<div class="w-px h-full bg-outline-variant/30 relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface-container-low px-4 py-2 font-display-lg text-4xl text-outline-variant/50 italic">VS</div>
+</div>
+</div>
+<!-- Solution -->
+<div class="flex-1 space-y-8 p-10 bg-primary/5 rounded-3xl border border-primary/20 relative">
+<div class="absolute -top-4 left-10 bg-primary text-white px-4 py-1 rounded-full font-label-sm text-sm uppercase tracking-wider">Giải pháp EnterpriseFlow</div>
+<h3 class="font-headline-lg text-2xl text-on-surface">Giải pháp bán hàng linh hoạt &amp; Chuyên sâu</h3>
+<p class="text-on-surface-variant">Khác với các hệ thống cồng kềnh, EnterpriseFlow cung cấp bộ công cụ linh hoạt cao, tương thích hoàn hảo với mọi thiết bị di động và phần cứng chuyên dụng:</p>
+<ul class="space-y-4">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-green-600 mt-1">check_circle</span>
+<p class="text-on-surface-variant font-body-md">Giao diện POS tối ưu cho thao tác chạm, tốc độ xử lý nhanh dưới 2 giây/giao dịch.</p>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-green-600 mt-1">check_circle</span>
+<p class="text-on-surface-variant font-body-md">Kết nối linh hoạt với Máy POS cầm tay, Máy tính bảng, PC và các thiết bị IoT hiện đại.</p>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-green-600 mt-1">check_circle</span>
+<p class="text-on-surface-variant font-body-md">Tự động hóa quy trình vận hành tại cửa hàng, mang lại sự tiện lợi vượt trội cho khách hàng.</p>
+</li>
+</ul>
+<div class="pt-4">
+<button class="bg-secondary text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:scale-105 transition-transform">
+                        Chat với chuyên gia ngay
+                        <span class="material-symbols-outlined">forum</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Tutorials Section -->
+<section class="py-20 bg-surface-container-low">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Hướng dẫn sử dụng</h2>
+<p class="text-on-surface-variant">Làm chủ EnterpriseFlow trong vài phút với bộ tài liệu trực quan.</p>
+</div>
+<a class="text-primary font-bold hover:underline" href="#">Xem tất cả bài viết</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Tutorial Card 1 -->
+<div class="bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant/30 group">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of a modern laptop screen displaying clean, colorful data dashboards and business metrics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzkyuJojOt1urppL_QlR1Yp6pzt-zfZxRBs2Iq6dCnrbbn1Nl7LUIcfdbT4UC9N3rwKglcjdgzaoCUC3-yxXnxqEDvSeRyWEkrwdPZy2MRFC-naa5TctvNowF8_hymOdPjh_GS6KcRdy4uJTsMi-efqb1FRd_mdpGj_zaots2SaqL7LyvQRGogAW7Awlm_T2aVPwa8R20hjUHJNJOw7q52spzttKeRMWvlOm-Vm4j8T6AWOvy93EzP2AfiN6U0dWRXd4MlgKSPlNfX"/>
+</div>
+<div class="p-6">
+<span class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full font-label-sm text-label-sm mb-4">Cơ bản</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Bắt đầu nhanh với Dashboard</h3>
+<p class="text-on-surface-variant font-body-md mb-6">Cách thiết lập các chỉ số quan trọng ngay trên màn hình chính của bạn.</p>
+<button class="flex items-center text-primary font-bold group">
+                                Đọc thêm 
+                                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Tutorial Card 2 -->
+<div class="bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant/30 group">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional analyst at a sleek desk looking at high-fidelity data visualizations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjbm0yiCODXsXUEkncNStDX2oP-7rcEQbI1XEB8zvClJhICeFuqUEjxf-2qBhtJv2fIsREGh8zcL8rDa161W0EIMCop8lkiK8VjWNbVx7lkpvc11fVLyAlYEOjQCrcVKlobUGkmK8Fm7cVV6tmuf_GhPhFG91QYZSAcDSJWTskicjbeOhapeAXMu2YnpB7oC00CspDKFkXTFS56LjgZ_eh4iEJ91WLhosCtok00rbcR-edYuAZCOgOK1KlYcUcQQ9btJLssHpJEkDH"/>
+</div>
+<div class="p-6">
+<span class="inline-block px-3 py-1 bg-secondary/10 text-secondary rounded-full font-label-sm text-label-sm mb-4">Quản lý</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Tối ưu hóa quy trình CRM</h3>
+<p class="text-on-surface-variant font-body-md mb-6">Hướng dẫn chăm sóc khách hàng tự động để tăng tỉ lệ chốt đơn.</p>
+<button class="flex items-center text-primary font-bold group">
+                                Đọc thêm 
+                                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Tutorial Card 3 -->
+<div class="bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant/30 group">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A diverse team of professionals collaborating in a bright, glass-walled meeting room." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYm40wioNBCCT0r82F5_aDEjzhvq9bVsrnfxnRYmyEDBZiE3nYgRj4sYdeL-OFBwBW2qpKycaGUxUfm2GFoZC5wI5UZQB7AS3Bq57yivK2348hvp0VtuWFaH_3bi9VTCNSUUh9V4cJa2ujKjLtwJDzc9YJmf3WZjmZZEb7_EbbO-VER0ztIhJUsa0sO7cjEiWwQN39VOeUF-HjH4hm6-0TTp8-P5XZf3sLloUlbNEqbqYh8vU89m3qmhvluC33rEGZwrK0Pd0o4O3u"/>
+</div>
+<div class="p-6">
+<span class="inline-block px-3 py-1 bg-tertiary/10 text-tertiary rounded-full font-label-sm text-label-sm mb-4">Nâng cao</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Tích hợp AI vào báo cáo</h3>
+<p class="text-on-surface-variant font-body-md mb-6">Sử dụng trí tuệ nhân tạo để dự báo xu hướng kinh doanh quý tới.</p>
+<button class="flex items-center text-primary font-bold group">
+                                Đọc thêm 
+                                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. User Growth Section -->
+<section class="py-24 px-margin-desktop bg-surface bg-surface-container-low">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Sự tin tưởng của khách hàng</h2>
+<p class="text-on-surface-variant font-body-lg mb-8">Hơn 50,000 doanh nghiệp đã chuyển đổi số thành công cùng EnterpriseFlow. Tốc độ tăng trưởng người dùng của chúng tôi đạt 150% mỗi năm, minh chứng cho giá trị thực chất mà giải pháp mang lại.</p>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<div class="text-4xl font-extrabold text-primary mb-2 tracking-tighter">50K+</div>
+<div class="text-on-surface-variant font-label-md">Doanh nghiệp sử dụng</div>
+</div>
+<div>
+<div class="text-4xl font-extrabold text-secondary mb-2 tracking-tighter">98%</div>
+<div class="text-on-surface-variant font-label-md">Khách hàng hài lòng</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-xl border border-outline-variant/20 relative overflow-hidden h-[400px]">
+<div class="flex justify-between items-center mb-8">
+<span class="font-headline-md text-headline-md">Tăng trưởng người dùng</span>
+<div class="flex gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Chart Placeholder using SVG/CSS -->
+<div class="relative w-full h-64 flex items-end justify-between gap-2 px-2">
+<div class="flex-1 bg-primary/20 rounded-t-lg transition-all duration-1000 h-[20%]" id="bar-1"></div>
+<div class="flex-1 bg-primary/30 rounded-t-lg transition-all duration-1000 h-[35%]" id="bar-2"></div>
+<div class="flex-1 bg-primary/40 rounded-t-lg transition-all duration-1000 h-[50%]" id="bar-3"></div>
+<div class="flex-1 bg-primary/60 rounded-t-lg transition-all duration-1000 h-[65%]" id="bar-4"></div>
+<div class="flex-1 bg-primary/80 rounded-t-lg transition-all duration-1000 h-[80%]" id="bar-5"></div>
+<div class="flex-1 bg-primary rounded-t-lg transition-all duration-1000 h-[95%]" id="bar-6"></div>
+</div>
+<div class="flex justify-between mt-4 text-on-surface-variant font-label-sm">
+<span class="">2019</span>
+<span class="">2020</span>
+<span class="">2021</span>
+<span class="">2022</span>
+<span class="">2023</span>
+<span class="">2024</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Performance Comparison Section -->
+<section class="relative py-32 overflow-hidden bg-white">
+<div class="relative z-10 px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="text-center mb-20">
+<h2 class="font-headline-lg text-headline-lg mb-4 text-on-surface">Tối ưu hiệu suất vượt trội</h2>
+<p class="max-w-2xl mx-auto text-on-surface font-body-lg">Số liệu thống kê trung bình từ 1,000 khách hàng sau 6 tháng sử dụng EnterpriseFlow.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Before Card -->
+<div class="glass-card p-10 rounded-3xl text-surface border-surface/10">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-error text-4xl">history</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Trước khi dùng</h3>
+</div>
+<ul class="space-y-6">
+<li class="flex justify-between items-center border-b border-surface/10 pb-4">
+<span class="font-body-md text-on-surface">Thời gian xử lý đơn hàng</span>
+<span class="font-bold text-on-surface">45 phút</span>
+</li>
+<li class="flex justify-between items-center border-b border-surface/10 pb-4">
+<span class="font-body-md text-on-surface">Tỷ lệ sai sót dữ liệu</span>
+<span class="font-bold text-on-surface">12.5%</span>
+</li>
+<li class="flex justify-between items-center border-b border-surface/10 pb-4">
+<span class="font-body-md text-on-surface">Chi phí vận hành</span>
+<span class="font-bold text-on-surface">Cao</span>
+</li>
+</ul>
+</div>
+<!-- After Card -->
+<div class="bg-primary/20 backdrop-blur-xl p-10 rounded-3xl text-surface border border-primary/40 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-secondary text-surface text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-widest">Recommended</span>
+</div>
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-4xl">rocket_launch</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Sau khi dùng</h3>
+</div>
+<ul class="space-y-6">
+<li class="flex justify-between items-center border-b border-primary/20 pb-4">
+<span class="font-body-md text-on-surface">Thời gian xử lý đơn hàng</span>
+<div class="text-right">
+<span class="font-bold text-on-surface">12 phút</span>
+<div class="text-secondary-fixed-dim text-xs font-bold">Giảm 73%</div>
+</div>
+</li>
+<li class="flex justify-between items-center border-b border-primary/20 pb-4">
+<span class="font-body-md text-on-surface">Tỷ lệ sai sót dữ liệu</span>
+<div class="text-right">
+<span class="font-bold text-on-surface">0.8%</span>
+<div class="text-secondary-fixed-dim text-xs font-bold">Giảm 94%</div>
+</div>
+</li>
+<li class="flex justify-between items-center border-b border-primary/20 pb-4">
+<span class="font-body-md text-on-surface">Chi phí vận hành</span>
+<div class="text-right">
+<span class="font-bold text-on-surface">Tối ưu</span>
+<div class="text-secondary-fixed-dim text-xs font-bold">Tiết kiệm 40%</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<!-- Section 1: Dịch vụ chuyên nghiệp -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-1 space-y-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight">Dịch vụ chuyên nghiệp</h2>
+<p class="text-on-surface-variant font-body-lg">Tăng cường sức mạnh cho đội ngũ của bạn với giải pháp dịch vụ chuyên nghiệp linh hoạt và toàn diện, được thiết kế để cộng tác dự án liền mạch và giúp bạn vượt qua những thách thức hiện tại đồng thời chuẩn bị cho những cơ hội trong tương lai.</p>
+<div class="space-y-3">
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Kế toán dự án</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Quản lý tài nguyên</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Quản lý quan hệ khách hàng (CRM)</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Quản lý tài chính</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Thanh toán</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Báo cáo, Bảng điều khiển và Trí tuệ kinh doanh</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md font-bold hover:shadow-xl transition-all">Xem bản demo tương tác</button>
+</div>
+<div class="order-2">
+<div class="rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/30">
+<img alt="Dịch vụ chuyên nghiệp" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4kLj6KlkmIUFj9cD6nHlpTnfAjlkDmXk5lYxVyd7-zstFDb6vOXOSh9Y80r0ve7p55j3f8ypfiV6XFiAhkpfC3zTTDbuqy7iJlHGEImKlB1o_uj4X9MRFe34tsKm-CloSTozP-SqtRddzb2ZCgTZY814B23fYODaE7OR7rVoegYLysvGHfXFteiJgzqHM6kBsG4RX8QGSIOdaNt3pWFTqCpccIMzidAaP_GQfnOrGw8qGy5z7BHXAvXqcuKGBltujqJIFsfhHwbrT"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Kinh doanh tổng quát -->
+<section class="py-24 bg-surface">
+<div class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1">
+<div class="rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/30">
+<img alt="Kinh doanh tổng quát" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX-vYSIlM58NVCxBxXn1BANx8QLZ7IlAKoNr4BACGe_M1zx9HpiuJ3R50KDM9zvz8nwpdZRknpyIWbVh7bzVHb7VJJ8f0Hnsv8zcnqNS06zdwAplO4KmJC2XUB0pDGQeygeY-G2950PLGnYJGVopCSrmYC3vyTv8hspqqTzmat0r8IYNtSqheZm27aReAdxzFcChsfheR8A6598R38Vs0rDg2twxQ2u2xtCMH-JyZ291e7hmviiEbw0RvBR5Xj6bXXYbupFCfCkoXd"/>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight">Kinh doanh tổng quát</h2>
+<p class="text-on-surface-variant font-body-lg">Một hệ thống hoàn chỉnh để điều hành doanh nghiệp của bạn: Tài chính, Kế toán dự án, CRM, Báo cáo, Phân tích kinh doanh và hơn thế nữa.</p>
+<div class="space-y-3">
+<div class="flex justify-between items-center p-4 bg-white rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Quản lý tài chính</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-white rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Kế toán dự án</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-white rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Quản lý bảng lương</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-white rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Kế toán đa đơn vị và kế toán giao dịch nội bộ</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-white rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Bộ công cụ báo cáo, bảng điều khiển và phân tích dữ liệu</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-white rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Quản lý quan hệ khách hàng (CRM)</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md font-bold hover:shadow-xl transition-all">Xem bản demo tương tác</button>
+</div>
+</div>
+</section>
+<!-- Section 3: Bán lẻ -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-1 space-y-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight">Bán lẻ</h2>
+<p class="text-on-surface-variant font-body-lg">Giải pháp phần mềm bán lẻ đa kênh và thương mại điện tử dành cho các doanh nghiệp vừa và nhỏ, giúp cải thiện trải nghiệm mua sắm tại cửa hàng và tự động hóa quy trình nhập và xử lý đơn hàng trực tuyến.</p>
+<div class="space-y-3">
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Bộ kết nối thương mại</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Quản lý hàng tồn kho</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Quản lý đơn đặt hàng bán hàng</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Báo cáo, bảng điều khiển và phân tích dữ liệu</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">Hệ thống quản lý kho</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<span class="font-bold text-on-surface">CRM</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md font-bold hover:shadow-xl transition-all">Xem bản demo tương tác</button>
+</div>
+<div class="order-2">
+<div class="rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/30">
+<img alt="Bán lẻ" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Eyl58CUHSbWC0-dnuAk4yy1dwVVuLt0Kl15xzdxyI7WoJiBtkwqJ68SjyB-utJl-bw_CSoY9tbUZ7nPt36n-o02oeVGM3mon9eekIOP7M-l78D-6IO47ZSOb6gfO-9PfVe-8zADFh9SqJ3I9WsfFheNbgC2r6epSGdLabqJXE5mAItmyX5nihLTeYEGG1nrHaVTd8kKjXEZVLdGHJnU57KOzMOHIay0ax7OpK7X_lLe3yKVjzYJCGqPDqDx3JQvocSXq3gcAmDk6"/>
+</div>
+</div>
+</div>
+</section><footer class="full-width bg-[#131b2e] text-white font-body-md">
+<!-- Top Features Bar -->
+<div class="border-b border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-margin-desktop py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl">local_shipping</span>
+<div>
+<div class="font-bold text-headline-md text-lg">Giao hỏa tốc</div>
+<div class="text-surface-variant text-label-sm">Nội thành TP. HCM trong 4h</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl">assignment_return</span>
+<div>
+<div class="font-bold text-headline-md text-lg">Đổi trả miễn phí</div>
+<div class="text-surface-variant text-label-sm">Trong vòng 30 ngày miễn phí</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl">support_agent</span>
+<div>
+<div class="font-bold text-headline-md text-lg">Hỗ trợ 24/7</div>
+<div class="text-surface-variant text-label-sm">Hỗ trợ khách hàng 24/7</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl">percent</span>
+<div>
+<div class="font-bold text-headline-md text-lg">Deal hot bùng nổ</div>
+<div class="text-surface-variant text-label-sm">Flash sale giảm giá cực sốc</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Footer Content -->
+<div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<!-- Column 1: Brand & Contact -->
+<div class="space-y-6">
+<div class="font-display-lg text-2xl font-extrabold tracking-tighter">
+<span class="text-white">EGA</span><span class="text-error">SNEAKER</span>
+</div>
+<div class="space-y-4">
+<div class="font-bold text-label-md uppercase">CÔNG TY TNHH THỜI TRANG EGA SNEAKER</div>
+<p class="text-surface-variant text-body-md">Thương hiệu uy tín và chất lượng, cam kết mang đến những trải nghiệm mua sắm tiện lợi.</p>
+<div class="text-surface-variant text-label-md">Mã số thuế: 12345678999</div>
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="text-surface-variant">70 Lu Gia, District 11, Ho Chi Minh City</span>
+</div>
+<div class="flex gap-8">
+<div class="flex gap-2 items-center">
+<span class="material-symbols-outlined text-primary">call</span>
+<span class="font-bold">19006750</span>
+</div>
+<div class="flex gap-2 items-center">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="text-surface-variant">support@sapo.vn</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors"><span class="material-symbols-outlined text-sm">facebook</span></div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors"><span class="material-symbols-outlined text-sm">play_circle</span></div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors"><span class="material-symbols-outlined text-sm">music_note</span></div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors"><span class="material-symbols-outlined text-sm">photo_camera</span></div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors"><span class="material-symbols-outlined text-sm">share</span></div>
+</div>
+</div>
+<!-- Column 2: About -->
+<div class="space-y-6">
+<h4 class="font-bold text-headline-md text-lg">Về EGA Sneaker</h4>
+<ul class="space-y-3 text-surface-variant text-label-md">
+<li class=""><a class="hover:text-white transition-colors" href="#">Giới thiệu</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Hệ thống cửa hàng</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Thông tin liên hệ</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Các điều khoản và điều kiện</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Hỗ trợ và giải đáp thắc mắc</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Hợp tác cùng chúng tôi</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Tuyển dụng</a></li>
+</ul>
+</div>
+<!-- Column 3: Customer Support -->
+<div class="space-y-8">
+<div class="space-y-6">
+<h4 class="font-bold text-headline-md text-lg">Hỗ trợ khách hàng</h4>
+<ul class="space-y-3 text-surface-variant text-label-md">
+<li class=""><a class="hover:text-white transition-colors" href="#">Chính sách giao hàng</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Chính sách đổi trả hàng - Bảo hành</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Chính sách bảo mật</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Tra cứu đơn hàng</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-headline-md text-lg">Tổng đài hỗ trợ</h4>
+<div class="text-surface-variant text-label-md">
+<div class="">Gọi mua hàng: <span class="text-white font-bold">19006750</span> (8h-20h)</div>
+<div class="">Gọi bảo hành: <span class="text-white font-bold">19006750</span> (8h-20h)</div>
+</div>
+</div>
+</div>
+<!-- Column 4: Newsletter & Payment -->
+<div class="space-y-8">
+<div class="space-y-4">
+<h4 class="font-bold text-headline-md text-lg">Đăng ký nhận ưu đãi</h4>
+<p class="text-surface-variant text-label-sm">Đăng ký để nhận thông tin ưu đãi sớm nhất.</p>
+<div class="relative">
+<input class="w-full bg-transparent border border-outline-variant/30 rounded-full py-2 px-4 text-label-md focus:border-primary outline-none" placeholder="Email của bạn..." type="email"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 material-symbols-outlined text-surface-variant">arrow_forward</button>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-headline-md text-lg">PHƯƠNG THỨC THANH TOÁN</h4>
+<div class="flex gap-2 flex-wrap">
+<div class="bg-white p-1 rounded w-12 h-8 flex items-center justify-center text-[8px] text-black font-bold">VISA</div>
+<div class="bg-white p-1 rounded w-12 h-8 flex items-center justify-center text-[8px] text-black font-bold">MASTER</div>
+<div class="bg-white p-1 rounded w-12 h-8 flex items-center justify-center text-[8px] text-black font-bold">ZALOPAY</div>
+<div class="bg-white p-1 rounded w-12 h-8 flex items-center justify-center text-[8px] text-black font-bold">COD</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Copyright Bar -->
+<div class="border-t border-outline-variant/20 py-6 text-center text-surface-variant text-label-sm">
+        © Bản quyền thuộc về <span class="text-white font-bold">EGANY</span> | Cung cấp bởi <span class="text-white font-bold">Sapo</span>
+</div>
+</footer>
+<script>
+        // Simple animation for the growth chart bars on scroll
+        const bars = document.querySelectorAll('[id^="bar-"]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('h-0');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        bars.forEach(bar => {
+            const finalHeightMatch = bar.className.match(/h-\[(\d+)%\]/);
+            if (finalHeightMatch) {
+                const finalHeight = finalHeightMatch[0];
+                bar.classList.replace(finalHeight, 'h-0');
+                setTimeout(() => {
+                    bar.classList.replace('h-0', finalHeight);
+                }, 500);
+                observer.observe(bar);
+            }
+        });
+    </script>
+    <script>
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        const heroBgLayers = document.querySelectorAll('.hero-bg-layer');
+        const dayLayer = document.querySelector('.hero-bg-layer.a7');
+        const duskLayer = document.querySelector('.hero-bg-layer.a8');
+        const nightLayer = document.querySelector('.hero-bg-layer.a6');
+        const opacityRange = document.getElementById('opacityRange');
+        const opacityUp = document.getElementById('opacityUp');
+        const opacityDown = document.getElementById('opacityDown');
+        const opacityValue = document.getElementById('opacityValue');
+
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            heroBgLayers.forEach((img) => {
+                img.style.transform = `translateY(${offset * 0.18}px) scale(1.03)`;
+            });
+            revealElements.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add('scroll-visible');
+                }
+            });
+        };
+
+        let autoOpacity = 0;
+        let autoOpacityTimer;
+
+        const updateOpacity = (value) => {
+            const v = Number(value);
+            autoOpacity = v;
+            const dayOpacity = Math.max(0, 1 - v * 2);
+            const duskOpacity = v <= 0.5 ? v * 2 : Math.max(0, 2 - v * 2);
+            const nightOpacity = Math.max(0, v * 2 - 1);
+
+            if (dayLayer) dayLayer.style.opacity = dayOpacity;
+            if (duskLayer) duskLayer.style.opacity = duskOpacity;
+            if (nightLayer) nightLayer.style.opacity = nightOpacity;
+            if (opacityValue) opacityValue.textContent = v.toFixed(2);
+            if (opacityRange) opacityRange.value = v;
+        };
+
+        const startOpacityLoop = () => {
+            if (autoOpacityTimer) clearInterval(autoOpacityTimer);
+            autoOpacity = 0;
+            updateOpacity(autoOpacity);
+            autoOpacityTimer = setInterval(() => {
+                autoOpacity = Number((autoOpacity + 0.09).toFixed(2));
+                if (autoOpacity > 1) {
+                    autoOpacity = 0;
+                }
+                updateOpacity(autoOpacity);
+            }, 1000);
+        };
+
+        if (opacityRange) {
+            opacityRange.addEventListener('input', (e) => {
+                updateOpacity(e.target.value);
+            });
+        }
+
+        if (opacityUp) {
+            opacityUp.addEventListener('click', () => {
+                const current = Number(opacityRange?.value || 0);
+                updateOpacity(Math.min(1, current + 0.01).toFixed(2));
+            });
+        }
+
+        if (opacityDown) {
+            opacityDown.addEventListener('click', () => {
+                const current = Number(opacityRange?.value || 0);
+                updateOpacity(Math.max(0, current - 0.01).toFixed(2));
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', () => {
+            startOpacityLoop();
+            handleScroll();
+        });
+    </script>
+    <script>
+        const appDropdownBtn = document.getElementById('app-dropdown-btn');
+        const appDropdown = document.getElementById('app-dropdown');
+        const industryDropdownBtn = document.getElementById('industry-dropdown-btn');
+        const industryDropdown = document.getElementById('industry-dropdown');
+
+        appDropdownBtn.addEventListener('mouseenter', () => {
+            appDropdown.classList.add('active');
+        });
+        
+        appDropdown.addEventListener('mouseleave', () => {
+            appDropdown.classList.remove('active');
+        });
+
+        appDropdownBtn.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                if (!appDropdown.matches(':hover')) {
+                    appDropdown.classList.remove('active');
+                }
+            }, 100);
+        });
+
+        industryDropdownBtn.addEventListener('mouseenter', () => {
+            industryDropdown.classList.add('active');
+        });
+        
+        industryDropdown.addEventListener('mouseleave', () => {
+            industryDropdown.classList.remove('active');
+        });
+
+        industryDropdownBtn.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                if (!industryDropdown.matches(':hover')) {
+                    industryDropdown.classList.remove('active');
+                }
+            }, 100);
+        });
+
+        // Toggle dropdown on click for mobile
+        appDropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            appDropdown.classList.toggle('active');
+            industryDropdown.classList.remove('active');
+        });
+
+        industryDropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            industryDropdown.classList.toggle('active');
+            appDropdown.classList.remove('active');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            appDropdown.classList.remove('active');
+            industryDropdown.classList.remove('active');
+        });
+    </script>
+</body></html>
