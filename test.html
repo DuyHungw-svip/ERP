@@ -308,7 +308,7 @@
 <main>
 <!-- 1. Hero Section -->
 <section id="heroSection" class="relative h-[300vh] w-full">
-    <div class="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+    <div class="hero-scene sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <div class="hero-bg absolute inset-0 z-0 overflow-hidden">
             <img alt="Hero background A7 - Day" class="hero-bg-layer a7" src="./A1.png" />
             <img alt="Hero background A8 - Dusk" class="hero-bg-layer a8" src="./A2.png" />
@@ -330,88 +330,66 @@
                     </button>
 </div>
     </div>
+</div>
 </section>
 <!-- 2. Features Section (Grid of Icons) -->
-<section class="py-20 bg-white w-full relative">
-<img alt="Section Cloud overlay" class="section-cloud" src="./cloud_big.png" />
+<section class="ecosystem-section py-20 w-full relative">
 <div class="px-margin-desktop max-w-container-max mx-auto">
 <div class="text-center mb-16">
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Hệ sinh thái quản trị 360°</h2>
 <p class="text-on-surface-variant max-w-2xl mx-auto">Mọi công cụ bạn cần để vận hành doanh nghiệp đều có mặt tại đây, tích hợp hoàn hảo trong một nền tảng duy nhất.</p>
 </div>
-<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-<!-- Feature Items -->
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-primary text-4xl">account_balance</span>
+<div class="module-board">
+<section class="module-group module-group-admin">
+<h3>Quản trị &amp; Điều hành</h3>
+<div class="module-apps">
+<button class="app-card module-app-card" data-app="accounting" type="button"><span class="app-icon"><span class="material-symbols-outlined">account_balance</span></span><span class="app-name">Kế toán</span></button>
+<button class="app-card module-app-card" data-app="hr" type="button"><span class="app-icon"><span class="material-symbols-outlined">badge</span></span><span class="app-name">Nhân sự</span></button>
+<button class="app-card module-app-card" data-app="projects" type="button"><span class="app-icon"><span class="material-symbols-outlined">assignment</span></span><span class="app-name">Dự án</span></button>
+<button class="app-card module-app-card" data-app="documents" type="button"><span class="app-icon"><span class="material-symbols-outlined">description</span></span><span class="app-name">Tài liệu</span></button>
+<button class="app-card module-app-card" data-app="sign" type="button"><span class="app-icon"><span class="material-symbols-outlined">draw</span></span><span class="app-name">Ký tên</span></button>
 </div>
-<span class="font-label-md text-label-md text-on-surface">Kế toán</span>
+</section>
+<section class="module-group module-group-sales">
+<h3>Bán hàng &amp; Marketing</h3>
+<div class="module-apps">
+<button class="app-card module-app-card" data-app="crm" type="button"><span class="app-icon"><span class="material-symbols-outlined">hub</span></span><span class="app-name">CRM</span></button>
+<button class="app-card module-app-card" data-app="sales" type="button"><span class="app-icon"><span class="material-symbols-outlined">shopping_cart</span></span><span class="app-name">Bán hàng</span></button>
+<button class="app-card module-app-card" data-app="pos" type="button"><span class="app-icon"><span class="material-symbols-outlined">point_of_sale</span></span><span class="app-name">POS</span></button>
 </div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-secondary text-4xl">draw</span>
+</section>
+<section class="module-group module-group-operations">
+<h3>Vận hành &amp; Sản xuất</h3>
+<div class="module-apps">
+<button class="app-card module-app-card" data-app="inventory" type="button"><span class="app-icon"><span class="material-symbols-outlined">inventory_2</span></span><span class="app-name">Tồn kho</span></button>
+<button class="app-card module-app-card" data-app="manufacturing" type="button"><span class="app-icon"><span class="material-symbols-outlined">precision_manufacturing</span></span><span class="app-name">Sản xuất</span></button>
+<button class="app-card module-app-card" data-app="ai" type="button"><span class="app-icon"><span class="material-symbols-outlined">psychology</span></span><span class="app-name">AI trợ lý</span></button>
 </div>
-<span class="font-label-md text-label-md text-on-surface">Ký tên</span>
+</section>
 </div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-tertiary text-4xl">hub</span>
+<div class="app-carousel-section">
+<div class="app-carousel-heading">
+<div><span class="app-carousel-kicker">Khám phá nhanh</span><h3>Tất cả ứng dụng</h3></div>
+<div class="app-carousel-controls">
+<button id="app-carousel-prev" type="button" aria-label="Cuộn ứng dụng sang trái"><span class="material-symbols-outlined">chevron_left</span></button>
+<button id="app-carousel-next" type="button" aria-label="Cuộn ứng dụng sang phải"><span class="material-symbols-outlined">chevron_right</span></button>
 </div>
-<span class="font-label-md text-label-md text-on-surface">CRM</span>
 </div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-primary text-4xl">point_of_sale</span>
+<div class="app-carousel-viewport" id="app-carousel-viewport">
+<div class="app-carousel-track">
+<button class="app-card" data-app="accounting" type="button"><span class="app-icon"><span class="material-symbols-outlined">account_balance</span></span><span class="app-name">Kế toán</span></button>
+<button class="app-card" data-app="sign" type="button"><span class="app-icon"><span class="material-symbols-outlined">draw</span></span><span class="app-name">Ký tên</span></button>
+<button class="app-card" data-app="crm" type="button"><span class="app-icon"><span class="material-symbols-outlined">hub</span></span><span class="app-name">CRM</span></button>
+<button class="app-card" data-app="pos" type="button"><span class="app-icon"><span class="material-symbols-outlined">point_of_sale</span></span><span class="app-name">POS</span></button>
+<button class="app-card" data-app="hr" type="button"><span class="app-icon"><span class="material-symbols-outlined">badge</span></span><span class="app-name">Nhân sự</span></button>
+<button class="app-card" data-app="inventory" type="button"><span class="app-icon"><span class="material-symbols-outlined">inventory_2</span></span><span class="app-name">Tồn kho</span></button>
+<button class="app-card" data-app="manufacturing" type="button"><span class="app-icon"><span class="material-symbols-outlined">precision_manufacturing</span></span><span class="app-name">Sản xuất</span></button>
+<button class="app-card" data-app="sales" type="button"><span class="app-icon"><span class="material-symbols-outlined">shopping_cart</span></span><span class="app-name">Bán hàng</span></button>
+<button class="app-card" data-app="ai" type="button"><span class="app-icon"><span class="material-symbols-outlined">psychology</span></span><span class="app-name">AI trợ lý</span></button>
+<button class="app-card" data-app="documents" type="button"><span class="app-icon"><span class="material-symbols-outlined">description</span></span><span class="app-name">Tài liệu</span></button>
+<button class="app-card" data-app="projects" type="button"><span class="app-icon"><span class="material-symbols-outlined">assignment</span></span><span class="app-name">Dự án</span></button>
+<button class="app-card" data-app="website" type="button"><span class="app-icon"><span class="material-symbols-outlined">language</span></span><span class="app-name">Trang web</span></button>
 </div>
-<span class="font-label-md text-label-md text-on-surface">POS</span>
-</div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-secondary text-4xl">badge</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">Nhân sự</span>
-</div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-tertiary text-4xl">inventory_2</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">Tồn kho</span>
-</div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-primary text-4xl">precision_manufacturing</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">Sản xuất</span>
-</div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-secondary text-4xl">shopping_cart</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">Bán hàng</span>
-</div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-tertiary text-4xl">psychology</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">AI trợ lý</span>
-</div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-primary text-4xl">description</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">Tài liệu</span>
-</div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-secondary text-4xl">assignment</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">Dự án</span>
-</div>
-<div class="flex flex-col items-center group cursor-pointer">
-<div class="w-20 h-20 mb-4 bg-surface-container-low rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all group-hover:-translate-y-1">
-<span class="material-symbols-outlined text-tertiary text-4xl">language</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">Trang web</span>
 </div>
 </div>
 </div>
@@ -567,106 +545,92 @@
 </div>
 </section>
 <!-- 3. Tutorials Section -->
-<section class="py-20 bg-surface-container-low">
+<section class="tutorials-section py-20" id="tutorials">
 <div class="px-margin-desktop max-w-container-max mx-auto">
-<div class="flex justify-between items-end mb-12">
+<div class="tutorials-heading">
 <div>
+<span class="tutorials-eyebrow">Trung tâm kiến thức</span>
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Hướng dẫn sử dụng</h2>
 <p class="text-on-surface-variant">Làm chủ EnterpriseFlow trong vài phút với bộ tài liệu trực quan.</p>
 </div>
-<a class="text-primary font-bold hover:underline" href="#">Xem tất cả bài viết</a>
+<a class="tutorials-all-link" href="tutorial-detail.html?article=dashboard">Xem tất cả bài viết <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="tutorials-grid">
 <!-- Tutorial Card 1 -->
-<div class="bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant/30 group">
-<div class="aspect-video relative overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of a modern laptop screen displaying clean, colorful data dashboards and business metrics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzkyuJojOt1urppL_QlR1Yp6pzt-zfZxRBs2Iq6dCnrbbn1Nl7LUIcfdbT4UC9N3rwKglcjdgzaoCUC3-yxXnxqEDvSeRyWEkrwdPZy2MRFC-naa5TctvNowF8_hymOdPjh_GS6KcRdy4uJTsMi-efqb1FRd_mdpGj_zaots2SaqL7LyvQRGogAW7Awlm_T2aVPwa8R20hjUHJNJOw7q52spzttKeRMWvlOm-Vm4j8T6AWOvy93EzP2AfiN6U0dWRXd4MlgKSPlNfX"/>
+<article class="tutorial-card">
+<div class="tutorial-card-image">
+<img alt="Dashboard quản trị EnterpriseFlow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzkyuJojOt1urppL_QlR1Yp6pzt-zfZxRBs2Iq6dCnrbbn1Nl7LUIcfdbT4UC9N3rwKglcjdgzaoCUC3-yxXnxqEDvSeRyWEkrwdPZy2MRFC-naa5TctvNowF8_hymOdPjh_GS6KcRdy4uJTsMi-efqb1FRd_mdpGj_zaots2SaqL7LyvQRGogAW7Awlm_T2aVPwa8R20hjUHJNJOw7q52spzttKeRMWvlOm-Vm4j8T6AWOvy93EzP2AfiN6U0dWRXd4MlgKSPlNfX"/>
+<span class="tutorial-duration"><span class="material-symbols-outlined">schedule</span> 5 phút</span>
 </div>
-<div class="p-6">
-<span class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full font-label-sm text-label-sm mb-4">Cơ bản</span>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Bắt đầu nhanh với Dashboard</h3>
-<p class="text-on-surface-variant font-body-md mb-6">Cách thiết lập các chỉ số quan trọng ngay trên màn hình chính của bạn.</p>
-<button class="flex items-center text-primary font-bold group">
-                                Đọc thêm 
-                                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</button>
+<div class="tutorial-card-body">
+<span class="tutorial-tag tutorial-tag-basic">Cơ bản</span>
+<h3>Bắt đầu nhanh với Dashboard</h3>
+<p>Cách thiết lập các chỉ số quan trọng ngay trên màn hình chính của bạn.</p>
+<a class="tutorial-read-more" href="tutorial-detail.html?article=dashboard">Đọc thêm <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
-</div>
+</article>
 <!-- Tutorial Card 2 -->
-<div class="bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant/30 group">
-<div class="aspect-video relative overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional analyst at a sleek desk looking at high-fidelity data visualizations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjbm0yiCODXsXUEkncNStDX2oP-7rcEQbI1XEB8zvClJhICeFuqUEjxf-2qBhtJv2fIsREGh8zcL8rDa161W0EIMCop8lkiK8VjWNbVx7lkpvc11fVLyAlYEOjQCrcVKlobUGkmK8Fm7cVV6tmuf_GhPhFG91QYZSAcDSJWTskicjbeOhapeAXMu2YnpB7oC00CspDKFkXTFS56LjgZ_eh4iEJ91WLhosCtok00rbcR-edYuAZCOgOK1KlYcUcQQ9btJLssHpJEkDH"/>
+<article class="tutorial-card">
+<div class="tutorial-card-image">
+<img alt="Phân tích quy trình CRM" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjbm0yiCODXsXUEkncNStDX2oP-7rcEQbI1XEB8zvClJhICeFuqUEjxf-2qBhtJv2fIsREGh8zcL8rDa161W0EIMCop8lkiK8VjWNbVx7lkpvc11fVLyAlYEOjQCrcVKlobUGkmK8Fm7cVV6tmuf_GhPhFG91QYZSAcDSJWTskicjbeOhapeAXMu2YnpB7oC00CspDKFkXTFS56LjgZ_eh4iEJ91WLhosCtok00rbcR-edYuAZCOgOK1KlYcUcQQ9btJLssHpJEkDH"/>
+<span class="tutorial-duration"><span class="material-symbols-outlined">schedule</span> 8 phút</span>
 </div>
-<div class="p-6">
-<span class="inline-block px-3 py-1 bg-secondary/10 text-secondary rounded-full font-label-sm text-label-sm mb-4">Quản lý</span>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Tối ưu hóa quy trình CRM</h3>
-<p class="text-on-surface-variant font-body-md mb-6">Hướng dẫn chăm sóc khách hàng tự động để tăng tỉ lệ chốt đơn.</p>
-<button class="flex items-center text-primary font-bold group">
-                                Đọc thêm 
-                                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</button>
+<div class="tutorial-card-body">
+<span class="tutorial-tag tutorial-tag-management">Quản lý</span>
+<h3>Tối ưu hóa quy trình CRM</h3>
+<p>Hướng dẫn chăm sóc khách hàng tự động để tăng tỉ lệ chốt đơn.</p>
+<a class="tutorial-read-more" href="tutorial-detail.html?article=crm">Đọc thêm <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
-</div>
+</article>
 <!-- Tutorial Card 3 -->
-<div class="bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-outline-variant/30 group">
-<div class="aspect-video relative overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A diverse team of professionals collaborating in a bright, glass-walled meeting room." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYm40wioNBCCT0r82F5_aDEjzhvq9bVsrnfxnRYmyEDBZiE3nYgRj4sYdeL-OFBwBW2qpKycaGUxUfm2GFoZC5wI5UZQB7AS3Bq57yivK2348hvp0VtuWFaH_3bi9VTCNSUUh9V4cJa2ujKjLtwJDzc9YJmf3WZjmZZEb7_EbbO-VER0ztIhJUsa0sO7cjEiWwQN39VOeUF-HjH4hm6-0TTp8-P5XZf3sLloUlbNEqbqYh8vU89m3qmhvluC33rEGZwrK0Pd0o4O3u"/>
+<article class="tutorial-card">
+<div class="tutorial-card-image">
+<img alt="Đội ngũ ứng dụng AI vào báo cáo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYm40wioNBCCT0r82F5_aDEjzhvq9bVsrnfxnRYmyEDBZiE3nYgRj4sYdeL-OFBwBW2qpKycaGUxUfm2GFoZC5wI5UZQB7AS3Bq57yivK2348hvp0VtuWFaH_3bi9VTCNSUUh9V4cJa2ujKjLtwJDzc9YJmf3WZjmZZEb7_EbbO-VER0ztIhJUsa0sO7cjEiWwQN39VOeUF-HjH4hm6-0TTp8-P5XZf3sLloUlbNEqbqYh8vU89m3qmhvluC33rEGZwrK0Pd0o4O3u"/>
+<span class="tutorial-duration"><span class="material-symbols-outlined">schedule</span> 10 phút</span>
 </div>
-<div class="p-6">
-<span class="inline-block px-3 py-1 bg-tertiary/10 text-tertiary rounded-full font-label-sm text-label-sm mb-4">Nâng cao</span>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Tích hợp AI vào báo cáo</h3>
-<p class="text-on-surface-variant font-body-md mb-6">Sử dụng trí tuệ nhân tạo để dự báo xu hướng kinh doanh quý tới.</p>
-<button class="flex items-center text-primary font-bold group">
-                                Đọc thêm 
-                                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</button>
+<div class="tutorial-card-body">
+<span class="tutorial-tag tutorial-tag-advanced">Nâng cao</span>
+<h3>Tích hợp AI vào báo cáo</h3>
+<p>Sử dụng trí tuệ nhân tạo để dự báo xu hướng kinh doanh quý tới.</p>
+<a class="tutorial-read-more" href="tutorial-detail.html?article=ai-report">Đọc thêm <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
-</div>
+</article>
 </div>
 </div>
 </section>
 <!-- 4. User Growth Section -->
-<section class="py-24 px-margin-desktop bg-surface bg-surface-container-low">
-<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Sự tin tưởng của khách hàng</h2>
-<p class="text-on-surface-variant font-body-lg mb-8">Hơn 50,000 doanh nghiệp đã chuyển đổi số thành công cùng EnterpriseFlow. Tốc độ tăng trưởng người dùng của chúng tôi đạt 150% mỗi năm, minh chứng cho giá trị thực chất mà giải pháp mang lại.</p>
-<div class="grid grid-cols-2 gap-8">
-<div>
-<div class="text-4xl font-extrabold text-primary mb-2 tracking-tighter">50K+</div>
-<div class="text-on-surface-variant font-label-md">Doanh nghiệp sử dụng</div>
+<section class="trust-section">
+<div class="trust-shell max-w-container-max mx-auto">
+<div class="trust-content scroll-reveal">
+<span class="trust-index">06</span>
+<h2 class="trust-title">
+<span>Sức mạnh công nghệ.</span>
+<strong>Giá trị bền vững.</strong>
+</h2>
+<span class="trust-title-line" aria-hidden="true"></span>
+<p class="trust-description">Hơn 50,000 doanh nghiệp đã chuyển đổi số thành công cùng EnterpriseFlow. Tốc độ tăng trưởng người dùng của chúng tôi đạt 150% mỗi năm, minh chứng cho giá trị thực chất mà giải pháp mang lại.</p>
+<span class="trust-accent-line" aria-hidden="true"></span>
 </div>
-<div>
-<div class="text-4xl font-extrabold text-secondary mb-2 tracking-tighter">98%</div>
-<div class="text-on-surface-variant font-label-md">Khách hàng hài lòng</div>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-xl border border-outline-variant/20 relative overflow-hidden h-[400px]">
-<div class="flex justify-between items-center mb-8">
-<span class="font-headline-md text-headline-md">Tăng trưởng người dùng</span>
-<div class="flex gap-2">
-<span class="w-3 h-3 rounded-full bg-primary"></span>
-<span class="w-3 h-3 rounded-full bg-secondary"></span>
-</div>
-</div>
-<!-- Chart Placeholder using SVG/CSS -->
-<div class="relative w-full h-64 flex items-end justify-between gap-2 px-2">
-<div class="flex-1 bg-primary/20 rounded-t-lg transition-all duration-1000 h-[20%]" id="bar-1"></div>
-<div class="flex-1 bg-primary/30 rounded-t-lg transition-all duration-1000 h-[35%]" id="bar-2"></div>
-<div class="flex-1 bg-primary/40 rounded-t-lg transition-all duration-1000 h-[50%]" id="bar-3"></div>
-<div class="flex-1 bg-primary/60 rounded-t-lg transition-all duration-1000 h-[65%]" id="bar-4"></div>
-<div class="flex-1 bg-primary/80 rounded-t-lg transition-all duration-1000 h-[80%]" id="bar-5"></div>
-<div class="flex-1 bg-primary rounded-t-lg transition-all duration-1000 h-[95%]" id="bar-6"></div>
-</div>
-<div class="flex justify-between mt-4 text-on-surface-variant font-label-sm">
-<span class="">2019</span>
-<span class="">2020</span>
-<span class="">2021</span>
-<span class="">2022</span>
-<span class="">2023</span>
-<span class="">2024</span>
-</div>
+
+<div class="trust-visual scroll-reveal" aria-label="Hình ảnh đội ngũ và hoạt động doanh nghiệp">
+<span class="trust-network trust-network-left" aria-hidden="true"></span>
+<span class="trust-network trust-network-right" aria-hidden="true"></span>
+
+<figure class="trust-hex trust-hex-1">
+<img alt="Nhân sự làm việc trên máy tính" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAfnoE2yq1YvEEvs-h6wpaidlgWiPRXqDaRZY5-d7U8dfij9fPsRl-VEGKTTjRr496yDCy4dqURdYpBV6wrckWK_B-kSSUF7dM-9fZzPt4KuvivflDshmrwep0bedPO72u2pM5yAxYjlJ689rPmcsIdqkksyBBnB4QoGd5p25m_pnynEOnDjZXwiuxqxvakBMV4zLXcsId3oYRrNZveCH6fonp4FqtgIeYEkZyL9_sOESyl6OxXjEymImB6yLyk7Gwm8gl-hdE5z4c"/>
+</figure>
+<figure class="trust-hex trust-hex-2">
+<img alt="Cuộc họp doanh nghiệp" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYm40wioNBCCT0r82F5_aDEjzhvq9bVsrnfxnRYmyEDBZiE3nYgRj4sYdeL-OFBwBW2qpKycaGUxUfm2GFoZC5wI5UZQB7AS3Bq57yivK2348hvp0VtuWFaH_3bi9VTCNSUUh9V4cJa2ujKjLtwJDzc9YJmf3WZjmZZEb7_EbbO-VER0ztIhJUsa0sO7cjEiWwQN39VOeUF-HjH4hm6-0TTp8-P5XZf3sLloUlbNEqbqYh8vU89m3qmhvluC33rEGZwrK0Pd0o4O3u"/>
+</figure>
+<figure class="trust-hex trust-hex-3">
+<img alt="Đội ngũ trao đổi công việc" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4kLj6KlkmIUFj9cD6nHlpTnfAjlkDmXk5lYxVyd7-zstFDb6vOXOSh9Y80r0ve7p55j3f8ypfiV6XFiAhkpfC3zTTDbuqy7iJlHGEImKlB1o_uj4X9MRFe34tsKm-CloSTozP-SqtRddzb2ZCgTZY814B23fYODaE7OR7rVoegYLysvGHfXFteiJgzqHM6kBsG4RX8QGSIOdaNt3pWFTqCpccIMzidAaP_GQfnOrGw8qGy5z7BHXAvXqcuKGBltujqJIFsfhHwbrT"/>
+</figure>
+<figure class="trust-hex trust-hex-4">
+<img alt="Hợp tác kinh doanh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjbm0yiCODXsXUEkncNStDX2oP-7rcEQbI1XEB8zvClJhICeFuqUEjxf-2qBhtJv2fIsREGh8zcL8rDa161W0EIMCop8lkiK8VjWNbVx7lkpvc11fVLyAlYEOjQCrcVKlobUGkmK8Fm7cVV6tmuf_GhPhFG91QYZSAcDSJWTskicjbeOhapeAXMu2YnpB7oC00CspDKFkXTFS56LjgZ_eh4iEJ91WLhosCtok00rbcR-edYuAZCOgOK1KlYcUcQQ9btJLssHpJEkDH"/>
+</figure>
+<figure class="trust-hex trust-hex-5">
+<img alt="Tòa nhà doanh nghiệp hiện đại" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX-vYSIlM58NVCxBxXn1BANx8QLZ7IlAKoNr4BACGe_M1zx9HpiuJ3R50KDM9zvz8nwpdZRknpyIWbVh7bzVHb7VJJ8f0Hnsv8zcnqNS06zdwAplO4KmJC2XUB0pDGQeygeY-G2950PLGnYJGVopCSrmYC3vyTv8hspqqTzmat0r8IYNtSqheZm27aReAdxzFcChsfheR8A6598R38Vs0rDg2twxQ2u2xtCMH-JyZ291e7hmviiEbw0RvBR5Xj6bXXYbupFCfCkoXd"/>
+</figure>
 </div>
 </div>
 </section>
@@ -985,5 +949,58 @@
         © Bản quyền thuộc về <span class="text-white font-bold">EGANY</span> | Cung cấp bởi <span class="text-white font-bold">Sapo</span>
 </div>
 </footer>
+<dialog class="app-modal" id="app-detail-modal" aria-labelledby="app-modal-title">
+<button class="app-switch app-switch-prev" id="app-switch-prev" type="button" aria-label="Chức năng trước">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+<span class="app-switch-label" id="app-switch-prev-label"></span>
+</button>
+<button class="app-switch app-switch-next" id="app-switch-next" type="button" aria-label="Chức năng tiếp theo">
+<span class="app-switch-label" id="app-switch-next-label"></span>
+<span class="material-symbols-outlined">arrow_forward_ios</span>
+</button>
+<div class="app-modal-shell">
+<button class="app-modal-close" id="app-modal-close" type="button" aria-label="Đóng cửa sổ">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="app-modal-hero">
+<div class="app-modal-heading">
+<span class="app-modal-icon material-symbols-outlined" id="app-modal-icon"></span>
+<div>
+<span class="app-modal-eyebrow">Giải pháp EnterpriseFlow</span>
+<h2 id="app-modal-title"></h2>
+</div>
+</div>
+<p class="app-modal-summary" id="app-modal-summary"></p>
+</div>
+<div class="app-modal-content">
+<section class="app-gallery" aria-label="Hình ảnh minh họa">
+<div class="app-gallery-stage">
+<img id="app-gallery-main" alt=""/>
+<button class="gallery-arrow gallery-prev" id="gallery-prev" type="button" aria-label="Ảnh trước"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="gallery-arrow gallery-next" id="gallery-next" type="button" aria-label="Ảnh tiếp theo"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<div class="app-gallery-thumbs" id="app-gallery-thumbs"></div>
+</section>
+<div class="app-modal-details">
+<section>
+<h3><span class="material-symbols-outlined">auto_awesome</span> Chức năng nổi bật</h3>
+<ul class="app-feature-list" id="app-feature-list"></ul>
+</section>
+<section class="app-suitable">
+<h3><span class="material-symbols-outlined">group_work</span> Phù hợp cho</h3>
+<ul class="app-suitable-list" id="app-suitable-list"></ul>
+</section>
+<section class="app-workflow">
+<h3><span class="material-symbols-outlined">account_tree</span> Quy trình vận hành</h3>
+<ol class="app-workflow-list" id="app-workflow-list"></ol>
+</section>
+</div>
+</div>
+<div class="app-modal-footer">
+<span><span class="material-symbols-outlined">verified</span> Sẵn sàng tích hợp với hệ thống doanh nghiệp</span>
+<button class="app-modal-action" type="button">Khám phá ngay <span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</dialog>
     <script src="./script.js"></script>
 </body></html>
