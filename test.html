@@ -104,6 +104,36 @@
     <link rel="stylesheet" href="./style.css"/>
 </head>
 <body class="bg-background text-on-background font-body-md">
+<!-- Glass Sticky Navigation -->
+<header class="glass-nav" id="glass-nav">
+<div class="glass-nav__bar">
+<a class="glass-nav__brand" href="#heroSection" aria-label="Brand - Trang chủ">Brand.</a>
+<nav class="glass-nav__links" aria-label="Điều hướng chính">
+<a class="is-active" href="#heroSection">Trang chủ</a>
+<a href="#gioi-thieu">Giới thiệu</a>
+<a href="#dich-vu">Dịch vụ</a>
+<a href="#du-an">Dự án</a>
+<a href="#blog">Blog</a>
+<a href="#lien-he">Liên hệ</a>
+</nav>
+<div class="glass-nav__actions">
+<button class="glass-nav__icon glass-nav__search" type="button" aria-label="Tìm kiếm">
+<span class="material-symbols-outlined" aria-hidden="true">search</span>
+</button>
+<button class="glass-nav__icon glass-nav__toggle" id="glass-nav-toggle" type="button" aria-label="Mở menu" aria-controls="glass-mobile-menu" aria-expanded="false">
+<span class="material-symbols-outlined" aria-hidden="true">menu</span>
+</button>
+</div>
+</div>
+<nav class="glass-nav__mobile" id="glass-mobile-menu" aria-label="Điều hướng mobile" aria-hidden="true">
+<a class="is-active" href="#heroSection">Trang chủ</a>
+<a href="#gioi-thieu">Giới thiệu</a>
+<a href="#dich-vu">Dịch vụ</a>
+<a href="#du-an">Dự án</a>
+<a href="#blog">Blog</a>
+<a href="#lien-he">Liên hệ</a>
+</nav>
+</header>
 <!-- TopNavBar -->
 <header class="docked full-width top-0 z-50 bg-transparent absolute w-full">
 <div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
@@ -333,7 +363,7 @@
 </div>
 </section>
 <!-- 2. Features Section (Grid of Icons) -->
-<section class="ecosystem-section py-20 w-full relative">
+<section class="ecosystem-section py-20 w-full relative" id="dich-vu">
 <div class="px-margin-desktop max-w-container-max mx-auto">
 <div class="text-center mb-16">
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Hệ sinh thái quản trị 360°</h2>
@@ -395,7 +425,7 @@
 </div>
 </section>
 <!-- NEW SECTION: Quản lý vận hành cửa hàng toàn diện -->
-<section class="py-24 bg-surface-container-lowest">
+<section class="py-24 bg-surface-container-lowest" id="gioi-thieu">
 <div class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <div class="relative order-2 lg:order-1">
 <div class="bg-primary/5 rounded-3xl p-4 aspect-square overflow-hidden border border-outline-variant/30 relative">
@@ -545,7 +575,7 @@
 </div>
 </section>
 <!-- 3. Tutorials Section -->
-<section class="tutorials-section py-20" id="tutorials">
+<section class="tutorials-section py-20" id="blog">
 <div class="px-margin-desktop max-w-container-max mx-auto">
 <div class="tutorials-heading">
 <div>
@@ -602,7 +632,6 @@
 <section class="trust-section">
 <div class="trust-shell max-w-container-max mx-auto">
 <div class="trust-content scroll-reveal">
-<span class="trust-index">06</span>
 <h2 class="trust-title">
 <span>Sức mạnh công nghệ.</span>
 <strong>Giá trị bền vững.</strong>
@@ -635,7 +664,7 @@
 </div>
 </section>
 <!-- 5. Performance Comparison Section -->
-<section class="relative py-32 overflow-hidden bg-white">
+<section class="relative py-32 overflow-hidden bg-white" id="du-an">
 <div class="relative z-10 px-margin-desktop max-w-container-max mx-auto w-full">
 <div class="text-center mb-20">
 <h2 class="font-headline-lg text-headline-lg mb-4 text-on-surface">Tối ưu hiệu suất vượt trội</h2>
@@ -823,7 +852,7 @@
 </div>
 </div>
 </div>
-</section><footer class="full-width bg-[#131b2e] text-white font-body-md">
+</section><footer class="full-width bg-[#131b2e] text-white font-body-md" id="lien-he">
 <!-- Top Features Bar -->
 <div class="border-b border-outline-variant/20">
 <div class="max-w-container-max mx-auto px-margin-desktop py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

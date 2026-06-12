@@ -1,4 +1,56 @@
 // Simple animation for the growth chart bars on scroll
+const glassNav = document.getElementById('glass-nav');
+const glassNavToggle = document.getElementById('glass-nav-toggle');
+const glassMobileMenu = document.getElementById('glass-mobile-menu');
+
+const updateGlassNav = () => {
+    const shouldShow = window.scrollY > 120;
+    glassNav?.classList.toggle('is-scrolled', shouldShow);
+
+    if (!shouldShow) closeGlassMenu();
+};
+
+const closeGlassMenu = () => {
+    if (!glassNav || !glassNavToggle || !glassMobileMenu) return;
+    glassNav.classList.remove('is-open');
+    glassNavToggle.setAttribute('aria-expanded', 'false');
+    glassNavToggle.setAttribute('aria-label', 'Mở menu');
+    glassMobileMenu.setAttribute('aria-hidden', 'true');
+    const icon = glassNavToggle.querySelector('.material-symbols-outlined');
+    if (icon) icon.textContent = 'menu';
+};
+
+glassNavToggle?.addEventListener('click', () => {
+    if (!glassNav || !glassMobileMenu) return;
+    const isOpen = glassNav.classList.toggle('is-open');
+    glassNavToggle.setAttribute('aria-expanded', String(isOpen));
+    glassNavToggle.setAttribute('aria-label', isOpen ? 'Đóng menu' : 'Mở menu');
+    glassMobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    const icon = glassNavToggle.querySelector('.material-symbols-outlined');
+    if (icon) icon.textContent = isOpen ? 'close' : 'menu';
+});
+
+glassMobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeGlassMenu);
+});
+
+glassNav?.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+        const target = link.getAttribute('href');
+        glassNav.querySelectorAll('a[href^="#"]').forEach((navLink) => {
+            navLink.classList.toggle('is-active', navLink.getAttribute('href') === target);
+        });
+    });
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeGlassMenu();
+});
+
+window.addEventListener('scroll', updateGlassNav, { passive: true });
+window.addEventListener('load', updateGlassNav);
+updateGlassNav();
+
 const bars = document.querySelectorAll('[id^="bar-"]');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -79,6 +131,19 @@ window.addEventListener('load', () => {
     handleScroll();
 });
 
+const trustVisual = document.querySelector('.trust-visual');
+
+if (trustVisual) {
+    const trustObserver = new IntersectionObserver(([entry]) => {
+        trustVisual.classList.toggle('trust-active', entry.isIntersecting);
+    }, {
+        threshold: 0.28,
+        rootMargin: '-8% 0px -8%'
+    });
+
+    trustObserver.observe(trustVisual);
+}
+
 const featureRevealElements = document.querySelectorAll(
     '.ecosystem-section .text-center, .ecosystem-section .module-group, .ecosystem-section .app-carousel-section'
 );
@@ -135,6 +200,43 @@ const tutorialRevealObserver = new IntersectionObserver((entries) => {
 });
 
 tutorialRevealElements.forEach((element) => tutorialRevealObserver.observe(element));
+
+const sectionRevealSelectors = [
+    '#gioi-thieu > div > div',
+    'main > section.py-24.bg-surface > div > .text-center',
+    'main > section.py-24.bg-surface > div > .grid > div',
+    'main > section.py-24.px-margin-desktop > div > .flex > .flex-1',
+    '#du-an > div > .text-center',
+    '#du-an > div > .grid > div',
+    'body > section.py-24 > div > div',
+    '#lien-he > .border-b .grid > div',
+    '#lien-he > .max-w-container-max.grid > div'
+];
+
+const sectionRevealElements = [
+    ...new Set(
+        sectionRevealSelectors.flatMap((selector) => [...document.querySelectorAll(selector)])
+    )
+];
+
+sectionRevealElements.forEach((element, index) => {
+    element.classList.add(
+        'section-reveal-item',
+        index % 2 === 0 ? 'reveal-from-left' : 'reveal-from-right'
+    );
+    element.style.setProperty('--section-reveal-delay', `${(index % 4) * 90}ms`);
+});
+
+const sectionRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        entry.target.classList.toggle('section-visible', entry.isIntersecting);
+    });
+}, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -50px'
+});
+
+sectionRevealElements.forEach((element) => sectionRevealObserver.observe(element));
 
 const appDropdownBtn = document.getElementById('app-dropdown-btn');
 const appDropdown = document.getElementById('app-dropdown');
